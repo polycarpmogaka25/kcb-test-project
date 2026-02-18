@@ -1,10 +1,10 @@
 spring:
   application:
-    name: books-api
+    name: books-api-demo
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
-    username: sa
+    username: kcb-book
     password:
   jpa:
     hibernate:
@@ -13,4 +13,13 @@ spring:
   h2:
     console:
       enabled: true
+
+p11:
+  masking:
+    enabled: true
+    fields:
+      - email
+      - phoneNumber
+    mask-style: PARTIAL
+    mask-character: "*"
 

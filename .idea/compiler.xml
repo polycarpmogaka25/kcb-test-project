@@ -18,6 +18,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="books-api" options="-parameters" />
+      <module name="books-api-demo" options="-parameters" />
       <module name="masking" options="-parameters" />
     </option>
   </component>

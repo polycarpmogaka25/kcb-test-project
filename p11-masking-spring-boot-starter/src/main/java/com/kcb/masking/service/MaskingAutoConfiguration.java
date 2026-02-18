@@ -1,25 +1,34 @@
 package com.kcb.masking.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.kcb.masking.config.MaskingProperties;
+import com.kcb.masking.utils.MaskingSerializer;
+import com.kcb.masking.utils.MaskingUtils;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
 @AutoConfiguration
-@ConditionalOnProperty(
-        prefix = "p11.masking",
-        name = "enabled",
-        havingValue = "true",
-        matchIfMissing = true
-)
+@ConditionalOnProperty(prefix = "p11.masking", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class MaskingAutoConfiguration {
 
     @Bean
-    public SimpleModule maskingModule(MaskingProperties props) {
+    public MaskingUtils maskingEngine() {
+        return new MaskingUtils();
+    }
+
+    @Bean
+    public SimpleModule maskingModule(MaskingProperties properties, MaskingUtils engine) {
         var module = new SimpleModule();
-        module.setSerializerModifier(new MaskingSerializerModifier(props));
+        module.addSerializer(Object.class, new MaskingSerializer(properties, engine));
         return module;
     }
+
+    @Bean
+    public ObjectMapper objectMapper(SimpleModule maskingModule, ObjectMapper defaultMapper) {
+        defaultMapper.registerModule(maskingModule);
+        return defaultMapper;
+    }
+
 }

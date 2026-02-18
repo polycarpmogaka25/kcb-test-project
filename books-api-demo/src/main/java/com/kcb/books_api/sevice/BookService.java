@@ -1,7 +1,7 @@
 package com.kcb.books_api.sevice;
 
+import com.kcb.books_api.dto.BookDto;
 import com.kcb.books_api.entity.Book;
-import com.kcb.books_api.model.BookDto;
 import jakarta.validation.Valid;
 
 public interface BookService {

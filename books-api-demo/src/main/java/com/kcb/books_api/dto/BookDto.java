@@ -1,5 +1,6 @@
-package com.kcb.books_api.model;
+package com.kcb.books_api.dto;
 
+import com.kcb.masking.annotation.Mask;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -15,6 +16,8 @@ public class BookDto {
     @NotBlank
     private String author;
     @Email
+    @Mask
     private String email;
+    @Mask
     private String phoneNumber;
 }
