@@ -6,6 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="p11-masking-spring-boot-starter" />
+        <module name="books-api-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
